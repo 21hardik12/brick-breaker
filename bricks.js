@@ -5,9 +5,9 @@ function Brick(x, y, w, h) {
 	this.h = h;
 	
 	this.show = function() {
-		fill(255);
+		fill(random(100, 255), random(100, 255), random(100, 255));
 		noStroke();
-		rect(this.x, this.y, this.w, this.h);
+		rect(this.x, this.y, this.w, this.h, 10);
 	}
 }
 
@@ -15,16 +15,14 @@ class Bricks {
 	constructor(n_rows, bW) {
 		this.rows = n_rows;
 		this.bW = bW;
-		this.gap_b_rows = 5;
-		this.bH = 10;
-	
-		this.cols = floor(width/this.bW);
-		
+		this.gap = 10;
+		this.cols = floor(width/(this.gap+this.bW));		
+		this.bH = 20;
 		this.bricks = [];
 		for (let i = 0; i < this.rows; i++) {
 			this.bricks[i] = [];
 			for (let j = 0; j < this.cols; j++) {
-				this.bricks[i][j] = new Brick((this.bW)*j, this.bH*i*this.gap_b_rows, this.bW - 2, this.bH);
+				this.bricks[i][j] = new Brick(this.gap+(this.bW+this.gap)*j, this.gap+(this.bH+this.gap)*i, this.bW, this.bH);
 			}
 		}
 	}
@@ -32,7 +30,6 @@ class Bricks {
 	show() {
 		for (let i = 0; i < this.rows; i++) {
 			for (let j = 0; j < this.cols; j++) {
-				fill(random(100, 255), random(100, 255), random(100, 255));
 				this.bricks[i][j].show();
 			}
 		}

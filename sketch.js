@@ -1,17 +1,28 @@
+let bricks;
+let pad;
+let ball;
+
 function setup() {
 	createCanvas(800 , 400);
-	background(100);
-	let bW = 50;
-	let gap = 10;
-	let n_bricks = floor(width/(bW+gap));
-		
-	for (let j = 0; j < 3; j++) {
-		for (let i = 0; i < n_bricks; i++) {
-			rect(gap+(bW+gap)*i, gap+(gap+20)*j, bW, 20);
-		}
-	}
+	bricks = new Bricks(3, 50);
+	pad = new Pad();
+	ball = new Ball(width/2, height/2);
 }
 
-function draw() {
+
+function draw() {	
+	background(100);
+	bricks.show();
 	
+	// Updating the Pad
+	if (keyIsDown(RIGHT_ARROW)) {
+		pad.x += pad.xspeed;
+	} else if (keyIsDown(LEFT_ARROW)) {
+		pad.x -= pad.xspeed;
+	}
+	pad.x = constrain(pad.x, 0, width-pad.w);	
+	
+	pad.show();
+	ball.show();
+	ball.update(pad);
 }
