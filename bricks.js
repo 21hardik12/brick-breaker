@@ -12,24 +12,27 @@ function Brick(x, y, w, h) {
 }
 
 class Bricks {
-	cosntructor(n_rows, n_cols) {
-		this.n_rows = n_rows;
-		this.n_cols = n_cols;
-		this.bricks = new Array(n_rows);
+	constructor(n_rows, bW) {
+		this.rows = n_rows;
+		this.bW = bW;
+		this.gap_b_rows = 5;
+		this.bH = 10;
+	
+		this.cols = floor(width/this.bW);
 		
-		this.bWidth = width/this.n_cols;
-		this.bHeight = height/this.n_rows;
-		for (let i = 0; i < this.n_rows; i++) {
-			this.bricks[i] = new Array(n_cols);
-			for (let j = 0; j < this.n_cols; j++) {
-				this.bricks[i][j] = new Brick(this.bWidth*j + 2, this.bHeight*i+2, this.bWidth, this.bHeight);
+		this.bricks = [];
+		for (let i = 0; i < this.rows; i++) {
+			this.bricks[i] = [];
+			for (let j = 0; j < this.cols; j++) {
+				this.bricks[i][j] = new Brick((this.bW)*j, this.bH*i*this.gap_b_rows, this.bW - 2, this.bH);
 			}
 		}
 	}
 	
 	show() {
-		for (let i = 0; i < this.n_rows; i++) {
-			for (let j = 0; j < this.n_cols; j++) {
+		for (let i = 0; i < this.rows; i++) {
+			for (let j = 0; j < this.cols; j++) {
+				fill(random(100, 255), random(100, 255), random(100, 255));
 				this.bricks[i][j].show();
 			}
 		}
