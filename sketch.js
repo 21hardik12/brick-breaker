@@ -1,11 +1,12 @@
 let bricks;
-let pad;
+let paddle;
 let ball;
 
 function setup() {
 	createCanvas(800 , 400);
+	rectMode(CENTER);
 	bricks = new Bricks(3, 50);
-	pad = new Pad();
+	paddle = new Paddle();
 	ball = new Ball(width/2, height/2);
 }
 
@@ -16,13 +17,13 @@ function draw() {
 	
 	// Updating the Pad
 	if (keyIsDown(RIGHT_ARROW)) {
-		pad.x += pad.xspeed;
+		paddle.x += paddle.xspeed;
 	} else if (keyIsDown(LEFT_ARROW)) {
-		pad.x -= pad.xspeed;
+		paddle.x -= paddle.xspeed;
 	}
-	pad.x = constrain(pad.x, 0, width-pad.w);	
+	paddle.x = constrain(paddle.x, paddle.w/2, width-paddle.w/2);	
 	
-	pad.show();
+	paddle.show();
 	ball.show();
-	ball.update(pad);
+	ball.update(paddle);
 }

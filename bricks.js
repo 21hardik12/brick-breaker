@@ -22,7 +22,7 @@ class Bricks {
 		for (let i = 0; i < this.rows; i++) {
 			this.bricks[i] = [];
 			for (let j = 0; j < this.cols; j++) {
-				this.bricks[i][j] = new Brick(this.gap+(this.bW+this.gap)*j, this.gap+(this.bH+this.gap)*i, this.bW, this.bH);
+				this.bricks[i][j] = new Brick(this.gap*4+(this.bW+this.gap)*j, this.gap*2+(this.bH+this.gap)*i, this.bW, this.bH);
 			}
 		}
 	}
